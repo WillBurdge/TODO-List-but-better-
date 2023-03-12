@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todo List</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:500" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="todo-app">
+		<div class="header">
+			<h1>Todo List</h1>
+			<div class="weather">
+				<img src="https://img.icons8.com/cotton/64/000000/sun--v1.png"/>
+				<p>25°C</p>
+			</div>
+		</div>
+		<div class="list-container">
+			<form>
+				<input type="text" placeholder="Add a task">
+				<button type="submit">Add</button>
+			</form>
+			<div class="quote">
+				<p>"Why do programmers prefer dark mode? Because light attracts bugs."</p>
+			</div>
+			<button class="fake-coffee-btn">Order Coffee</button>
+			<ul class="todo-list"></ul>
+		</div>
+	</div>
+	<script>
+		const form = document.querySelector('form');
+		const input = document.querySelector('input[type="text"]');
+		const taskList = document.querySelector('.todo-list');
+
+		form.addEventListener('submit', function (e) {
+		  e.preventDefault();
+		  if (input.value) {
+		    addTask(input.value);
+		    input.value = '';
+		  }
+		});
+
+		function addTask(task) {
+		  const li = document.createElement('li');
+		  li.innerHTML = `
+		    <div class="todo-item">
+		      <input type="checkbox">
+		      <label>${task}</label>
+		      <button class="delete-btn">X</button>
+		    </div>
+		  `;
+		  taskList.appendChild(li);
+		  const deleteButton = li.querySelector('.delete-btn');
+		  deleteButton.addEventListener('click', function () {
+		    li.remove();
+		  });
+		}
+	</script>
+</body>
+</html>
